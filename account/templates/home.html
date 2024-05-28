@@ -2,12 +2,18 @@
 {% load bootstrap4 %}
 {% block content %}
 <div>
-    <h3><a href="signup">회원가입</a></h3>
-    <h3><a href="login">로그인</a></h3>
-    <h3><a href="logout">로그아웃</a></h3>
+    <button><a href="signup">회원가입</a></button>
+    <button><a href="login">로그인</a></button>
+    <button><a href="logout">로그아웃</a></button>
 </div>
 {% if user.is_authenticated %}
-로그인 완료!!!!!!!!!!!!!!
+<h1>블로그 게시판 화면</h1>
+<a href="{% url 'post:write' %}"><input type="button" value="글 작성"></a>
+<ul>
+    {% for post in posts %}
+        <li><a href="{% url 'post:detail' id=post.id %}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
 {% else %}
 <p>로그인 해주세요</p>
 {% endif %} 

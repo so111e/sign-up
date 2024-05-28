@@ -1,7 +1,10 @@
 from django.contrib import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from .models import CustomUser
+from post.models import Post,PostImage
 
 def signup(request):
     if request.method == 'POST':
@@ -33,4 +36,5 @@ def logout(request):
     return redirect('home')
 
 def home(request):
-    return render(request, 'home.html')
+    posts=Post.objects.all().order_by('-id')
+    return render(request,'home.html',{'posts':posts})

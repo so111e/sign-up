@@ -4,11 +4,11 @@
 <div class="wrapper">
     <div style="text-align: center;">
         <h1>로그인</h1>
-        <form method="POST">
+        <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             아이디:
             <br>
-            <input name="username" type="text">
+            <input type="username" name="username">
             <br>
             비밀번호:
             <br>

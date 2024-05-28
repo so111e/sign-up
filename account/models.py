@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
-#장고에서 기본적으로 제공해주는 유저 커스텀해서 만드는거
 
 class Post(models.Model):
     title=models.CharField(max_length=60)

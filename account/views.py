@@ -36,5 +36,9 @@ def logout(request):
     return redirect('home')
 
 def home(request):
-    posts=Post.objects.all().order_by('-id')
-    return render(request,'home.html',{'posts':posts})
+    if request.user.is_authenticated:
+        user = request.user
+        posts = Post.objects.filter(user=user).order_by('-id')
+        return render(request, 'home.html', {'posts': posts, 'user' : user})
+    else:
+        return render(request, 'home.html')

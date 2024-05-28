@@ -8,6 +8,7 @@
 </div>
 {% if user.is_authenticated %}
 <h1>블로그 게시판 화면</h1>
+<h4>{{ user.username }}</h4>
 <a href="{% url 'post:write' %}"><input type="button" value="글 작성"></a>
 <ul>
     {% for post in posts %}

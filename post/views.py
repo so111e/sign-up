@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PostForm, PostImageForm
 from .models import Post, PostImage
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -8,10 +9,12 @@ def write(request):
     if request.method =='POST':
         title=request.POST.get('title')
         text=request.POST.get('text')
+        user = request.user
         
         post=Post.objects.create(
             title=title,
-            text=text
+            text=text,
+            user=user
         )
         images = request.FILES.getlist('image')
         for img in images:
@@ -21,7 +24,6 @@ def write(request):
         return redirect('home' )
     else:
         return render(request, 'write.html')
-
 
 def detail(request, id):
     post=get_object_or_404(Post, pk=id)

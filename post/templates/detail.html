@@ -8,7 +8,7 @@
         {% if image %}
         <ul>
             {% for image in image %}
-                <li><img src="{{ image.image.url }}" alt="Image"></li>
+                <img src="{{ image.image.url }}" alt="Image">
             {% endfor %}
         </ul>
         {% endif %}

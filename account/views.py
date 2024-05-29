@@ -14,7 +14,7 @@ def signup(request):
                                             password=request.POST['password1'],
                                             email=request.POST['email'],)
             auth.login(request, user)
-            return redirect('/')
+            return redirect('home')
         return render(request, 'signup.html')
     return render(request, 'signup.html')
 
@@ -34,6 +34,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('home')
+
 
 def home(request):
     if request.user.is_authenticated:
